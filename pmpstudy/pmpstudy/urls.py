@@ -20,11 +20,11 @@ from django.urls import include
 from django.views.generic import TemplateView
 from django.contrib.auth import views as auth_views
 
+import flashcard.views as card_views
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name="sitenav/index.html"), name='home'),
     path('flashcards/', include('flashcard.urls')),
-    # path('accounts/', include('django.contrib.auth.urls')), # Phase out upon customization
     path('accounts/login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
     path('accounts/password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
     path('admin/', admin.site.urls),

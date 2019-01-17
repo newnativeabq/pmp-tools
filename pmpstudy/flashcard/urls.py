@@ -18,9 +18,10 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('',views.CardListView.as_view(), name='post_list'),
+    path('', views.FlashCardHomeView.as_view(), name="card_home"),
+    path('card/list', views.CardListView.as_view(), name='card_list'),
     path('card/<slug:pk>', views.CardDetailView.as_view(), name='card_detail'),
-    path('card/new', views.CardCreateView.as_view(), name='card_create'),
+    path('card/new/', views.CardCreateView.as_view(), name='card_create'),
     path('card/<slug:pk>/edit', views.CardUpdateView.as_view(), name='card_update'),
     path('card/<slug:pk>/delete', views.CardDeleteView.as_view(), name='card_delete'),
     path('drafts', views.CardDraftList.as_view(), name='card_drafts')
