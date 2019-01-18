@@ -1,13 +1,19 @@
 {% extends "sitenav/base.html" %}
 
+{% load staticfiles %}
+
+{% block header_block %}
+    <link rel="stylesheet" href="{% static 'flashcard/css/flashcard_master.css' %}">
+{% endblock %}
+
 {% block body_block %}
     <div class="" id="app-header">
         <nav class="navbar navbar-light bg-light">
             <h1>Flashcards</h1>
             <form class="form-inline">    
-                <button class="btn btn-outline-secondary" type="button"><a href="{% url 'card_create' %}">Create Card</a></button>
-                <button class="btn btn-outline-secondary" type="button"><a href="{% url 'card_list' %}">Card List</a></button>
-                <button class="btn btn-outline-secondary" type="button">Refresh</button>
+                <button class="btn btn-outline-secondary" type="button"><a class="button-link" href="{% url 'card_create' %}">Create Card</a></button>
+                <button class="btn btn-outline-secondary" type="button"><a class="button-link" href="{% url 'card_list' %}">Card List</a></button>
+                <button class="btn btn-outline-secondary" type="button"><a class="button-link" href="#">Refresh</a></button>
             </form>
         </nav>
     </div>

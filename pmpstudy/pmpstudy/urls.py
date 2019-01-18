@@ -26,6 +26,7 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name="sitenav/index.html"), name='home'),
     path('flashcards/', include('flashcard.urls')),
     path('accounts/login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
+    path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('accounts/password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
     path('admin/', admin.site.urls),
 ]
