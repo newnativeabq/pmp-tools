@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
+from django.http import HttpResponseRedirect
 
 # Local Classes
 from .models import FlashCard
@@ -14,8 +15,7 @@ from django.views.generic import(
 
 # Create your views here.
 class FlashCardHomeView(TemplateView):
-    template_name = "flashcard/flashcard.html"
-    context_object_name = 'card'
+    template_name = "flashcard/card_about.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -41,6 +41,23 @@ class CardDetailView(DetailView):
         context['active_app'] = 'flashcards'
         return context
 
+class CardShowView(TemplateView):
+    template_name = "flashcard/card_launch.html"
+
+    # Query available cards and create a list to pass to JS in template
+    queryset = FlashCard.objects.filter(activated=True)
+    cards_info = []
+    for card in queryset:
+        cards_info.append(card.frontface)
+        cards_info.append(card.backface)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['active_app'] = 'flashcards'
+        context['cards'] = self.cards_info
+        context['card_count'] = self.queryset.count()
+        return context
+
 class CardCreateView(CreateView):
     form_class = FlashCardForm
     model = FlashCard
@@ -50,6 +67,13 @@ class CardCreateView(CreateView):
         context = super().get_context_data(**kwargs)
         context['active_app'] = 'flashcards'
         return context
+    
+    def form_valid(self, form):
+        model = form.save(commit=False)
+        # Space for further form work if necessary
+        model.owner = self.request.user
+        model.save()
+        return HttpResponseRedirect(reverse('card_create'))
 
 class CardUpdateView(UpdateView):
     form_class = FlashCardForm

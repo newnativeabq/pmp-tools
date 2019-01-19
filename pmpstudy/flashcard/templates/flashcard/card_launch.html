@@ -1,0 +1,61 @@
+{% extends "flashcard/flashcard.html" %}
+
+{% block card_block %}
+
+
+
+    <div class="row" style="height: 500px">
+        <div class="col align-self-center">
+            <div class="box">
+                <div class="card-nav"><span class="float-right" id="previous-card-nav">Left-Chevron</span></div>
+                <div class="card-content"><table><tr><td class="card-table" id="cardMainText">WaitingOnCard</td></tr></table></div>
+                <div class="card-nav float-left"><span id="next-card-nav">Right-Chevron</span></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var cardCount = {{card_count}};
+        var cardNumber = Math.ceil(Math.random() * cardCount);
+        var cards = {{ cards|safe }};
+        var frontIndex = 2 * cardNumber;
+        var backIndex = 2* cardNumber + 1;
+        var showing = "front";
+        var prevCardNumber = cardNumber;
+
+        // Initialize First Card
+        $("#cardMainText").text(cards[frontIndex]);
+
+        // BackNav (Save cardNumber)
+        $("#previous-card-nav").click(function(){
+            cardNumber = prevCardNumber;
+            frontIndex = 2 * cardNumber;
+            backIndex = 2 * cardNumber + 1;
+            $("#cardMainText").text(cards[frontIndex]);
+            showing = "front";
+        })
+        
+        // ForwardNav (Draw new Random Card Number)
+        $("#next-card-nav").click(function(){
+            prevCardNumber = cardNumber;
+            cardNumber = Math.ceil(Math.random() * cardCount);
+            frontIndex = 2 * cardNumber;
+            backIndex = 2 * cardNumber + 1;
+            alert("new cards"+frontIndex+backIndex)
+            $("#cardMainText").text(cards[frontIndex]);
+            showing = "front";
+        })
+
+        // Flip Card
+        $(".card-content").click(function(){
+            if (showing === "front"){
+                $("#cardMainText").text(cards[backIndex]);
+                showing = "back";
+            }   else{
+                $("#cardMainText").text(cards[frontIndex]);
+                showing = "front";
+            }
+        });
+    </script>
+
+{% endblock %}
