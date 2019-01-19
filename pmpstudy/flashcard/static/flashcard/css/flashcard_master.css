@@ -23,6 +23,10 @@
   justify-content: center;
 }
 
+.card-content table {
+  height: 300px;
+}
+
 .card-content table td {
   width: 500px;
   text-align: center;
