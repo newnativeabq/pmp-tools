@@ -24,9 +24,17 @@ TODO:
 
 @author: vince
 """
+
+
 import re
 from bs4 import BeautifulSoup
+from collections import namedtuple
 
+import os
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'pmpstudy.settings')
+
+import django
+django.setup()
 
 def searchDataType(**kwargs):
     dataInfo = kwargs
@@ -64,6 +72,9 @@ def cleanTags(instring):
         instring = instring.replace(pattern, '')
         
     return instring
+
+def addCards():
+    pass
 
 
 if __name__ == "__main__":
