@@ -73,9 +73,38 @@ def cleanTags(instring):
         
     return instring
 
-def addCards():
-    pass
+def addCards(cardDict, **kwargs):
+    '''
+    Takes card dictionary of form {titlekey}:[frontface,backface] and creates objects for addition to DB.
 
+    Must pass argument mode = dry-run or commit
+    '''
+    add_list = []
+    Card = namedtuple('Card', ['title', 'frontface', 'backface', 'activated', 'owner'])
+    
+    ##common to all cards
+    owner = ''
+    activated = True
+    #pull the rest and assign
+    for cardkey in cardDict.keys():
+        new_card = Card(
+            title = cardkey,
+            frontface = cardDict[cardkey][0],
+            backface = cardDict[cardkey][1],
+            owner = owner,
+            activated = activated
+        )
+        add_list.append(new_card)
+
+    runType = kwargs
+    if runType['mode'] == 'dry-run':
+        print('Executing dry-run.  Examples:')
+        for i in range(3):
+            print(add_list[i])
+        print('Total of {} cards to be added'.format(len(add_list)))
+        
+    elif runType['mode'] == 'commit':
+        print('Committing Changes')
 
 if __name__ == "__main__":
     
@@ -107,7 +136,8 @@ if __name__ == "__main__":
     if validateData(terms_cleaned, descriptions_cleaned):
         print('Data validated')
     
-    print(packData(terms=terms_cleaned, descriptions=descriptions_cleaned, source='PMP_Lexicon'))
+    new_cards = packData(terms=terms_cleaned, descriptions=descriptions_cleaned, source='PMP_Lexicon')
+    addCards(new_cards, mode='dry-run')
     
     raw.close()
     
