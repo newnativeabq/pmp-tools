@@ -35,6 +35,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'pmpstudy.settings')
 
 import django
 django.setup()
+from flashcard.models import FlashCard
 
 def searchDataType(**kwargs):
     dataInfo = kwargs
@@ -87,14 +88,14 @@ def addCards(cardDict, **kwargs):
     activated = True
     #pull the rest and assign
     for cardkey in cardDict.keys():
-        new_card = Card(
+        card_info = Card(
             title = cardkey,
             frontface = cardDict[cardkey][0],
             backface = cardDict[cardkey][1],
             owner = owner,
             activated = activated
         )
-        add_list.append(new_card)
+        add_list.append(card_info)
 
     runType = kwargs
     if runType['mode'] == 'dry-run':
@@ -104,6 +105,15 @@ def addCards(cardDict, **kwargs):
         print('Total of {} cards to be added'.format(len(add_list)))
         
     elif runType['mode'] == 'commit':
+        for card in add_list:
+            new_card = FlashCard(
+                title = card.title,
+                frontface = card.frontface,
+                backface = card.backface,
+                activated = activated,
+                owner = owner
+            )
+            new_card.save()
         print('Committing Changes')
 
 if __name__ == "__main__":
