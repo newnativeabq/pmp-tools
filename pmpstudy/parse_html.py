@@ -36,6 +36,8 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'pmpstudy.settings')
 import django
 django.setup()
 from flashcard.models import FlashCard
+from django.contrib.auth.models import User
+
 
 def searchDataType(**kwargs):
     dataInfo = kwargs
@@ -84,7 +86,7 @@ def addCards(cardDict, **kwargs):
     Card = namedtuple('Card', ['title', 'frontface', 'backface', 'activated', 'owner'])
     
     ##common to all cards
-    owner = ''
+    owner = User.objects.get(username='demouser')
     activated = True
     #pull the rest and assign
     for cardkey in cardDict.keys():
