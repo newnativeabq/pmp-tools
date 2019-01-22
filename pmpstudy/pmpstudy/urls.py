@@ -24,7 +24,8 @@ import flashcard.views as card_views
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name="sitenav/index.html"), name='home'),
-    path('flashcards/', include('flashcard.urls')),
+    path('flashcards/', include(('flashcard.urls', 'flashcards'), namespace='flashcards')),
+    path('blog/', include(('blog.urls', 'blog'), namespace='blog')),
     path('accounts/login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
     path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('accounts/password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),

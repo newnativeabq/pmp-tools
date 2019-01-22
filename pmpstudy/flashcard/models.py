@@ -10,7 +10,7 @@ class FlashCard(models.Model):
     title = models.CharField(max_length=100)
     frontface = models.TextField()
     backface = models.TextField()
-    created_date = models.DateTimeField(default=timezone.now())
+    created_date = models.DateTimeField(default=timezone.now)
     activated = models.BooleanField(blank=True, null=True)
     owner = models.ForeignKey('auth.User', on_delete='CASCADE', default=None)
     know_level = models.IntegerField(

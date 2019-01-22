@@ -14,6 +14,10 @@
     <script src="{% static '.js/jquery-3.3.1.min.js' %}"></script>
     <script src="{% static '.js/popper.js' %}"></script>
     <script src="{% static '.js/bootstrap.min.js' %}"></script>
+
+    <!-- Medium Style Editor -->
+    <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
     {% block header_block %}
     {% endblock %}
 
@@ -36,9 +40,14 @@
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarFeatureDropup">
                     {% if active_app != 'flashcards' %}
-                    <a class="dropdown-item" href="flashcards/">Flashcards</a>
+                    <a class="dropdown-item" href="{% url 'flashcards:card_home' %}">Flashcards</a>
                     {% else %}
                     <a class="dropdown-item" href="">Flashcards(Current)</a>
+                    {% endif %}
+                    {% if active_app != 'blog' %}
+                    <a class="dropdown-item" href="{% url 'blog:post_list' %}">Blog & Notes</a>
+                    {% else %}
+                    <a class="dropdown-item" href="">Blog & Notes(Current)</a>
                     {% endif %}
                   </div>
                 </li>

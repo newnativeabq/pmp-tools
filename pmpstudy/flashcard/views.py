@@ -73,7 +73,7 @@ class CardCreateView(CreateView):
         # Space for further form work if necessary
         model.owner = self.request.user
         model.save()
-        return HttpResponseRedirect(reverse('card_create'))
+        return HttpResponseRedirect(reverse('flashcards:card_create'))
 
 class CardUpdateView(UpdateView):
     form_class = FlashCardForm

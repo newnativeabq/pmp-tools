@@ -12,9 +12,9 @@
         <nav class="navbar navbar-light bg-light">
             <h1>Flashcards</h1>
             <form class="form-inline">    
-                <a class="button-link" href="{% url 'card_create' %}"><button class="btn btn-outline-secondary" type="button">Create Card</button></button></a>
-                <a class="button-link" href="{% url 'card_list' %}"><button class="btn btn-outline-secondary" type="button">Card List</button></button></a>
-                <a class="button-link" href="{% url 'card_launch' %}"><button class="btn btn-outline-secondary" type="button">Launch Cards</button></button></a>
+                <a class="button-link" href="{% url 'flashcards:card_create' %}"><button class="btn btn-outline-secondary" type="button">Create Card</button></button></a>
+                <a class="button-link" href="{% url 'flashcards:card_list' %}"><button class="btn btn-outline-secondary" type="button">Card List</button></button></a>
+                <a class="button-link" href="{% url 'flashcards:card_launch' %}"><button class="btn btn-outline-secondary" type="button">Launch Cards</button></button></a>
             </form>
         </nav>
     </div>
