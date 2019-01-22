@@ -1,0 +1,26 @@
+{% extends "flashcard/flashcard.html" %}
+
+{% block card_block %}
+    <div class="container">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
+                <h1 class="card-header">{{ object.title }}</h1>
+                <div class="card" style="width: 35em">
+                    <h5 class="card-title">{{ object.frontface }}</h5>
+                    <p class="card-text">{{ object.backface }}</p>
+
+                    {% if user.is_authenticated %}
+                        {% if object.activated %}
+                        <a class="btn btn-dark" style="width:10em" href="{% url 'flashcards:card_deactivate' pk=object.pk %}">Deactivate</a>
+                        {% else %}
+                        <a class="btn btn-light" style="width:10em" href="{% url 'flashcards:card_activate' pk=object.pk %}">Activate</a>
+                        {% endif %}
+                    {% endif %}
+
+                </div>
+            </div>
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
 
@@ -96,3 +96,18 @@ class CardDraftList(ListView):
         context = super().get_context_data(**kwargs)
         context['active_app'] = 'flashcards'
         return context
+
+
+## Publication/Activation Functions
+def activateCardView(request, pk):
+    card = get_object_or_404(FlashCard, pk=pk)
+    card.activate_card()
+    card.save()
+    return redirect('flashcards:card_detail', pk=pk)
+
+def deactivateCardView(request, pk):
+    card = get_object_or_404(FlashCard, pk=pk)
+    print('card info to deactivatedebug', card.pk)
+    card.deactivate_card()
+    card.save()
+    return redirect('flashcards:card_detail', pk=pk)

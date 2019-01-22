@@ -26,4 +26,6 @@ urlpatterns = [
     path('card/<slug:pk>/delete', views.CardDeleteView.as_view(), name='card_delete'),
     path('card/launch/', views.CardShowView.as_view(), name='card_launch'),
     path('drafts', views.CardDraftList.as_view(), name='card_drafts'),
+    path('card/activate/<slug:pk>/', views.activateCardView, name='card_activate'),
+    path('card/deactivate/<slug:pk>/', views.deactivateCardView, name='card_deactivate'),
 ]
