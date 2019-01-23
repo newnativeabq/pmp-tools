@@ -19,6 +19,9 @@ from django.views.generic import (
 ## For Function-Based Views specifically
 from django.contrib.auth.decorators import login_required
 
+## Tagging
+from tagging.models import Tag
+
 
 # Create your views here.
 class AboutView(TemplateView):
@@ -132,3 +135,12 @@ def comment_delete(request, pk):
     post_pk = comment.post.pk
     comment.delete()
     return redirect('blog:post_detail', pk=post_pk)
+
+## tagging
+# UNDER CONSTRUCTION
+@login_required
+def tag_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    newTags = request.newTags
+    Tag.objects.add_tag(post, newTags)
+    

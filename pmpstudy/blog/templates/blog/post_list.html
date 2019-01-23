@@ -8,6 +8,9 @@
         <div class="date">
             <p>Published on: {{post.published_date|date:"D M Y"}}</p>
         </div>
+        <div class="excerpt">
+            <p>{{ post.text|truncatechars:100|safe }}</p>
+        </div>
         <a href="{% url 'blog:post_detail' pk=post.pk %}">Comments: {{ post.approve_comments.count }}</a>
     </div>
     {% endfor %}

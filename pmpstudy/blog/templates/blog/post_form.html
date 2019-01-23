@@ -1,6 +1,7 @@
 {% extends "blog/blog_base.html" %}
 {% block content_block %}
 <h1>New Post</h1>
+<h4>Include a brief summary of content at the beginning for the excerpt (max 100 characters)</h4>
 <form class="post-form" method="POST">
     {% csrf_token %}
     {{form.as_p}}

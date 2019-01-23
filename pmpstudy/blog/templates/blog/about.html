@@ -1,6 +1,37 @@
 {% extends "blog/blog_base.html" %}
 
 {% block content_block %}
-<h1>About this Company</h1>
-<p>Thanks for coming!</p>
+<div class="jumbotron">
+    <h1>This note-taking application is a converted blog app</h1>
+</div>
+<div class="container">
+        <table>
+            <thead>
+                <th>Item No.</th>
+                <th>Description</th>
+                <th>Priority</th>
+            </thead>
+            <tr>
+                <td>1.</td>
+                <td>Create TODO Widget Application</td>
+                <td>Medium</td>
+            </tr>
+            <tr>
+                <td>2.</td>
+                <td>Add article tagging and queryset by tag</td>
+                <td>High</td>
+            </tr>
+            <tr>
+                <td>3.</td>
+                <td>Implement Search</td>
+                <td>Medium</td>
+            </tr>
+            <tr>
+                <td>5.</td>
+                <td>Re-style article display to be more book-like</td>
+                <td>Low</td>
+            </tr>
+        </table>
+    </div>
+
 {% endblock%}
