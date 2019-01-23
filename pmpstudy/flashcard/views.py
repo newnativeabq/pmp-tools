@@ -24,6 +24,7 @@ class FlashCardHomeView(TemplateView):
 
 class CardListView(ListView):
     queryset = FlashCard.objects.filter(activated=True)
+    paginate_by = 20
     template_name = "flashcard/card_list.html"
 
     def get_context_data(self, **kwargs):
@@ -79,6 +80,7 @@ class CardUpdateView(UpdateView):
     form_class = FlashCardForm
     model = FlashCard
     template_name = "flashcard/card_form.html"
+    redirect_field_name = 'flashcards:card_detail'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

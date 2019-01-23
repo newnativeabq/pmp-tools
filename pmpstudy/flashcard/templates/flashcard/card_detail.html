@@ -9,15 +9,16 @@
                 <div class="card" style="width: 35em">
                     <h5 class="card-title">{{ object.frontface }}</h5>
                     <p class="card-text">{{ object.backface }}</p>
-
-                    {% if user.is_authenticated %}
+                    <div class="d-flex justify-content-around">
+                        {% if user.is_authenticated %}
                         {% if object.activated %}
-                        <a class="btn btn-dark" style="width:10em" href="{% url 'flashcards:card_deactivate' pk=object.pk %}">Deactivate</a>
+                            <a class="btn btn-dark" style="width:10em" href="{% url 'flashcards:card_deactivate' pk=object.pk %}">Deactivate</a>
                         {% else %}
-                        <a class="btn btn-light" style="width:10em" href="{% url 'flashcards:card_activate' pk=object.pk %}">Activate</a>
+                            <a class="btn btn-light" style="width:10em" href="{% url 'flashcards:card_activate' pk=object.pk %}">Activate</a>
                         {% endif %}
-                    {% endif %}
-
+                            <a class="btn btn-primary" style="width:10em" href="{% url 'flashcards:card_update' pk=object.pk %}">Edit</a>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
             <div class="col"></div>

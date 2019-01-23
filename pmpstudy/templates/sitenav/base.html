@@ -75,9 +75,10 @@
             </div>
           </nav>
 
+    <div class="overflow-auto">
+        {% block body_block %}
+        {% endblock %}
+    </div>
 
-    {% block body_block %}
-
-    {% endblock %}
 </body>
 </html>
