@@ -43,3 +43,15 @@
   color: blueviolet;
   cursor: pointer;
 }
+
+/* Form Styling */
+.form-title{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 1.5em;
+  color: cadetblue;
+}
+
+.form-text{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: black;
+}

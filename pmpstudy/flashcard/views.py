@@ -51,6 +51,7 @@ class CardShowView(TemplateView):
     for card in queryset:
         cards_info.append(card.frontface)
         cards_info.append(card.backface)
+        cards_info.append(card.pk)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

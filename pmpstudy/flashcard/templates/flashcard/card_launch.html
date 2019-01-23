@@ -20,24 +20,44 @@
     </div>
 </div>
 
+<nav class="navbar navbar-light" style="background-color:gainsboro;">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+            <a class="nav-link" id="edit-link" href="">
+                    <button class="btn-btn-outline-secondary" type="button">
+                    Edit
+                    </button>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+
+
 <script>
     var cardCount = {{ card_count }};
     var cardNumber = Math.ceil(Math.random() * cardCount);
     var cards = {{ cards| safe }};
-    var frontIndex = 2 * cardNumber;
-    var backIndex = 2 * cardNumber + 1;
+    var frontIndex = 3 * cardNumber;
+    var backIndex = 3 * cardNumber + 1;
+    var pkIndex = 3 * cardNumber + 2;
     var showing = "front";
     var prevCardNumber = cardNumber;
 
     // Initialize First Card
     $("#cardMainText").text(cards[frontIndex]);
+    var editLink = "/flashcards/card/edit/"+cards[pkIndex];
+    $("#edit-link").attr("href", editLink);
 
     // BackNav (Save cardNumber)
     $("#previous-card-nav").click(function () {
         cardNumber = prevCardNumber;
-        frontIndex = 2 * cardNumber;
-        backIndex = 2 * cardNumber + 1;
+        frontIndex = 3 * cardNumber;
+        backIndex = 3 * cardNumber + 1;
+        pkIndex = 3 * cardNumber + 2;
         $("#cardMainText").text(cards[frontIndex]);
+        editLink = "/flashcards/card/edit/"+cards[pkIndex];
+        $("#edit-link").attr("href", editLink);
         showing = "front";
     })
 
@@ -45,9 +65,12 @@
     $("#next-card-nav").click(function () {
         prevCardNumber = cardNumber;
         cardNumber = Math.ceil(Math.random() * cardCount);
-        frontIndex = 2 * cardNumber;
-        backIndex = 2 * cardNumber + 1;
+        frontIndex = 3 * cardNumber;
+        backIndex = 3 * cardNumber + 1;
+        pkIndex = 3 * cardNumber + 2;
         $("#cardMainText").text(cards[frontIndex]);
+        editLink = "/flashcards/card/edit/"+cards[pkIndex];
+        $("#edit-link").attr("href", editLink);
         showing = "front";
     })
 

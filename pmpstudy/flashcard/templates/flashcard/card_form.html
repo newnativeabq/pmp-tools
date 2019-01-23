@@ -1,18 +1,54 @@
 {% extends "flashcard/flashcard.html" %}
 
 {% block card_block %}
-    <div class="container">
-        <div class="row">
-            <div class="col"></div>
-            <div class="col-6">
-                <h4>Create a New Card</h4>
-                <form method="POST">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <input type="submit" name="" id="" value="Save">
-                </form>
-            </div>
-            <div class="col"></div>
+<div class="jumbotron" style="height:5%;">
+    <h4>Create a New Card</h4>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-sm-10">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                <div class="fieldWrapper">
+                    {{ form.title.errors }}
+                    <label for="{{ form.title.id_for_label }}">Title</label>
+                    {{ form.title }}
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="fieldWrapper">
+                            {{ form.frontface.errors }}
+                            <label for="{{ form.frontface.id_for_label }}">Front of Card</label>
+                            {{ form.frontface}}
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="fieldWrapper">
+                            {{ form.backface.errors }}
+                            <label for="{{ form.backface.id_for_label }}">Back of Card</label>
+                            {{ form.backface}}
+                        </div>
+                    </div>
+                </div>
+                <div class="fieldWrapper">
+                    {{ form.activated.errors }}
+                    <label for="{{ form.activated.id_for_label }}">Activate the Card?</label>
+                    {{ form.activated}}
+                </div>
+
+                <div class="fieldWrapper">
+                    {{ form.know_level.errors }}
+                    <label for="{{ form.know_level.id_for_label }}">Knowledge Level (0-100)</label>
+                    {{ form.know_level}}
+                </div>
+                <br>
+
+                <input type="submit" name="" id="" value="Save">
+            </form>
         </div>
+        <div class="col"></div>
     </div>
+</div>
 {% endblock %}

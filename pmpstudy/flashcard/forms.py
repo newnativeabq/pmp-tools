@@ -13,9 +13,9 @@ class FlashCardForm(forms.ModelForm):
         
         ##  Adding widgets for later styling
         widgets = {
-            'title':forms.TextInput(attrs={'class':'textinputclass'}),
-            'frontface':forms.Textarea(attrs={'class':'frontface medium-editor-textarea'}),
-            'backface':forms.Textarea(attrs={'class':'backface medium-editor-textarea'}),
+            'title':forms.TextInput(attrs={'class':'form-title'}),
+            'frontface':forms.Textarea(attrs={'class':'form-text medium-editor-textarea'}),
+            'backface':forms.Textarea(attrs={'class':'form-text medium-editor-textarea'}),
             'know_level':forms.NumberInput(attrs={'class':'know_level'}),
             'activated':forms.CheckboxInput(attrs={'class':'activated'}),
         }

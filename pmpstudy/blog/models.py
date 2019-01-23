@@ -2,6 +2,9 @@ from django.db import models
 from django.utils import timezone
 from django.urls import reverse
 
+# Adding tagging
+from tagging.registry import register
+
 # Create your models here.
 
 class Post(models.Model):
@@ -40,3 +43,7 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.text
+
+# Register models for tagging
+register(Post)
+register(Comment)
